@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/sky-island.dae-8e4b83ff4edb3e16f5dca03d360da301.scn"
+path="res://.import/sky_island.escn-e25d611afc06ced7100ae5816e606567.scn"
 
 [deps]
 
-source_file="res://models/sky-island.dae"
-dest_files=[ "res://.import/sky-island.dae-8e4b83ff4edb3e16f5dca03d360da301.scn" ]
+source_file="res://models/sky_island.escn"
+dest_files=[ "res://.import/sky_island.escn-e25d611afc06ced7100ae5816e606567.scn" ]
 
 [params]
 
@@ -22,11 +22,11 @@ materials/storage=1
 materials/keep_on_reimport=true
 meshes/compress=true
 meshes/ensure_tangents=true
-meshes/storage=0
+meshes/storage=1
 meshes/light_baking=0
 meshes/lightmap_texel_size=0.1
 skins/use_named_skins=true
-external_files/store_in_subdir=false
+external_files/store_in_subdir=true
 animation/import=true
 animation/fps=15
 animation/filter_script=""
