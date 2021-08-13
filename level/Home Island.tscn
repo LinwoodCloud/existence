@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://models/sky-island.dae" type="PackedScene" id=1]
+[ext_resource path="res://models/tree.dae" type="PackedScene" id=2]
+
+[node name="Home Island" type="Spatial"]
+
+[node name="sky-island" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.200035, 0.892796, -1.38601 )
+
+[node name="tree" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.09929, 5.69695, 0.950505 )
+
+[node name="tree3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.871676, 0, -0.490082, 0, 1, 0, 0.490082, 0, 0.871676, -14.541, 7.29069, 0.950505 )
+
+[node name="tree5" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.855463, 0, 0.517863, -0.0185429, 0.999359, 0.0306311, -0.517531, -0.0358065, 0.854915, -14.541, 5.80762, 19.5518 )
+
+[node name="tree4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.959347, 0.0606653, -0.275632, -0.0583064, 0.998158, 0.0167521, 0.27614, 0, 0.961117, 2.06737, 6.86774, 15.5591 )
+
+[node name="tree2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.708429, 0.104702, -0.697972, -0.0745839, 0.994504, 0.073483, 0.70183, 0, 0.712345, 26.4571, 0.779064, 0.987037 )
