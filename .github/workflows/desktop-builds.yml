@@ -18,6 +18,7 @@ jobs:
       image: docker://barichello/godot-ci:3.3
     steps:
       - name: Setup WINE and rcedit 🍷
+        working-directory: game
         run: |
           dpkg --add-architecture i386 && apt-get update && apt-get install -y wine-stable && apt-get install -y wine32
           chown root:root -R ~
@@ -32,12 +33,14 @@ jobs:
         with:
           submodules: true
       - name: Setup 💻
+        working-directory: game
         run: |
           mkdir -v -p build/windows-64bit  ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Windows Build 🔧
         run: godot -v --export "Windows Desktop 64-bit" ./build/windows-64bit/$EXPORT_NAME.exe
       - name: Copy existence_data folder 📁
+        working-directory: game
         run: |
           cp -R ./existence_data ./build/windows-64bit
           rm ./build/windows-64bit/existence_data/.gdignore
@@ -45,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Windows-64bit
-          path: ./build/windows-64bit/
+          path: ./game/build/windows-64bit/
           retention-days: 14
 
   export-linux:
@@ -59,19 +62,24 @@ jobs:
         with:
           submodules: true
       - name: Setup 💻
+        working-directory: game
         run: |
           mkdir -v -p build/linux-64bit ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Linux Build 🔧
+        working-directory: game
         run: godot -v --export "Linux/X11 64-bit" ./build/linux-64bit/$EXPORT_NAME.x86_64
       - name: Give execute permission ☑️
+        working-directory: game
         run: 
           chmod +x ./build/linux-64bit/$EXPORT_NAME.x86_64
       - name: Copy existence_data folder 📁
+        working-directory: game
         run: |
           cp -R ./existence_data ./build/linux-64bit
           rm ./build/linux-64bit/existence_data/.gdignore
       - name: Create tar.gz archive 🗜️
+        working-directory: game
         run: |
           cd build
           tar zcvf linux-64bit.tar.gz linux-64bit
@@ -79,7 +87,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Linux-64bit
-          path: ./build/linux-64bit.tar.gz
+          path: ./game/build/linux-64bit.tar.gz
           retention-days: 14
 
   export-mac:
@@ -91,38 +99,46 @@ jobs:
         with:
           submodules: true
       - name: Download and extract export templates 💾
+        working-directory: game
         run: |
           mkdir -v -p ~/.local/share/godot/templates/${GODOT_VERSION_MAC}.stable
           curl -O https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION_MAC}/Godot_v${GODOT_VERSION_MAC}-stable_export_templates.tpz
           unzip -a Godot_v${GODOT_VERSION_MAC}-stable_export_templates.tpz
           mv ./templates/* ~/.local/share/godot/templates/${GODOT_VERSION_MAC}.stable
       - name: Download Godot headless binary 🤖
+        working-directory: game
         run: |
           wget https://github.com/huskeee/godot-headless-mac/releases/download/3.3-stable/Godot_v3.3-stable_mac_headless.64.zip
           unzip -a Godot_v${GODOT_VERSION_MAC}-stable_mac_headless.64.zip  
       - name: Setup 💻
+        working-directory: game
         run: mkdir -v -p ./build/mac
       - name: Mac Build 🔧
+        working-directory: game
         run: |
           chown runner ./Godot
           chmod +x ./Godot
           ./Godot -v --export "Mac OSX" ./build/mac/Existence.zip
       - name: Make application executable 🔧
+        working-directory: game
         run: |
           unzip -a ./build/mac/Existence.zip -d ./build/mac
           chmod +x ./build/mac/Existence.app/Contents/MacOS/Existence
           rm ./build/mac/Existence.zip
       - name: Fix application icon 🖼
+        working-directory: game
         run: sips -s format icns ./build/mac/Existence.app/Contents/Resources/icon.icns --out ./build/mac/Existence.app/Contents/Resources/icon.icns
       - name: Copy existence_data folder 📁
+        working-directory: game
         run: |
           cp -R ./existence_data ./build/mac/Existence.app/Contents/MacOS
           rm ./build/mac/Existence.app/Contents/MacOS/existence_data/.gdignore
       - name: Create DMG archive 🔧
+        working-directory: game
         run: hdiutil create -srcfolder ./build/mac -volname Existence ./build/mac/Existence.dmg
       - name: Upload Artifact 🚀
         uses: actions/upload-artifact@v2
         with:
           name: Mac
-          path: ./build/mac/Existence.dmg
+          path: ./game/build/mac/Existence.dmg
           retention-days: 14
