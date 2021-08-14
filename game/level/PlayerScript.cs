@@ -72,7 +72,6 @@ namespace ExistenceDot.Level
                 return;
             saveGame.Open("user://savegame.save", File.ModeFlags.Read);
             string text = saveGame.GetAsText();
-            GD.Print(text);
             JSONParseResult dict = JSON.Parse(text);
             saveGame.Close();
             if (dict.Error != 0)
@@ -93,7 +92,6 @@ namespace ExistenceDot.Level
             var saveGame = new File();
             saveGame.Open("user://savegame.save", File.ModeFlags.Write);
             var json = JSON.Print(_data.Save());
-            GD.Print(json);
             saveGame.StoreString(json);
             saveGame.Close();
         }
