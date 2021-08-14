@@ -103,11 +103,11 @@ jobs:
         working-directory: game
         run: |
           unzip -a ./build/mac/Existence.zip -d ./build/mac
-          chmod +x ./build/mac/Existence.app/Contents/MacOS/Existence-Dot
+          chmod +x ./build/mac/Existence-Dot.app/Contents/MacOS/Existence-Dot
           rm ./build/mac/Existence.zip
       - name: Fix application icon 🖼
         working-directory: game
-        run: sips -s format icns ./build/mac/Existence.app/Contents/Resources/icon.icns --out ./build/mac/Existence.app/Contents/Resources/icon.icns
+        run: sips -s format icns ./build/mac/Existence-Dot.app/Contents/Resources/icon.icns --out ./build/mac/Existence-Dot.app/Contents/Resources/icon.icns
       - name: Create DMG archive 🔧
         working-directory: game
         run: hdiutil create -srcfolder ./build/mac -volname Existence-Dot ./build/mac/Existence-Dot.dmg
