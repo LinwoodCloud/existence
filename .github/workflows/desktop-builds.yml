@@ -28,11 +28,11 @@ jobs:
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Windows Build 🔧
         run: godot -v --export "Windows Desktop 64-bit" ./build/windows-64bit/$EXPORT_NAME.exe
-      - name: Copy existence_data folder 📁
+      - name: Copy data_Existence-Dot folder 📁
         working-directory: game
         run: |
-          cp -R ./existence_data ./build/windows-64bit
-          rm ./build/windows-64bit/existence_data/.gdignore
+          cp -R ./data_Existence-Dot ./build/windows-64bit
+          rm ./build/windows-64bit/data_Existence-Dot/.gdignore
       - name: Upload Artifact 🚀
         uses: actions/upload-artifact@v2
         with:
@@ -62,11 +62,11 @@ jobs:
         working-directory: game
         run: 
           chmod +x ./build/linux-64bit/$EXPORT_NAME.x86_64
-      - name: Copy existence_data folder 📁
+      - name: Copy data_Existence-Dot folder 📁
         working-directory: game
         run: |
-          cp -R ./existence_data ./build/linux-64bit
-          rm ./build/linux-64bit/existence_data/.gdignore
+          cp -R ./data_Existence-Dot ./build/linux-64bit
+          rm ./build/linux-64bit/data_Existence-Dot/.gdignore
       - name: Create tar.gz archive 🗜️
         working-directory: game
         run: |
@@ -117,11 +117,11 @@ jobs:
       - name: Fix application icon 🖼
         working-directory: game
         run: sips -s format icns ./build/mac/Existence.app/Contents/Resources/icon.icns --out ./build/mac/Existence.app/Contents/Resources/icon.icns
-      - name: Copy existence_data folder 📁
+      - name: Copy data_Existence-Dot folder 📁
         working-directory: game
         run: |
-          cp -R ./existence_data ./build/mac/Existence.app/Contents/MacOS
-          rm ./build/mac/Existence.app/Contents/MacOS/existence_data/.gdignore
+          cp -R ./data_Existence-Dot ./build/mac/Existence.app/Contents/MacOS
+          rm ./build/mac/Existence.app/Contents/MacOS/data_Existence-Dot/.gdignore
       - name: Create DMG archive 🔧
         working-directory: game
         run: hdiutil create -srcfolder ./build/mac -volname Existence ./build/mac/Existence.dmg
