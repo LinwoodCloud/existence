@@ -14,7 +14,7 @@ jobs:
     name: Web Export 🌐
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.3.2
+      image: docker://barichello/godot-ci:mono-3.3.2
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v1
@@ -24,7 +24,7 @@ jobs:
         working-directory: game
         run: |
           mkdir -v -p build/web ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/templates/${GODOT_VERSION}.stable.mono
       - name: Web Build 🔧
         working-directory: game
         run: godot -v --export "HTML5" ./build/web/index.html
