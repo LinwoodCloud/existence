@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 
 env:
-  GODOT_VERSION: 3.3
+  GODOT_VERSION: 3.3.2
   GODOT_VERSION_MAC: 3.3
   EXPORT_NAME: Existence
 
@@ -15,7 +15,7 @@ jobs:
     name: Windows Export 🗔
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.3
+      image: docker://barichello/godot-ci:3.3.2
     steps:
       - name: Setup WINE and rcedit 🍷
         working-directory: game
@@ -55,7 +55,7 @@ jobs:
     name: Linux Export 🐧
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.3
+      image: docker://barichello/godot-ci:3.3.2
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v1
