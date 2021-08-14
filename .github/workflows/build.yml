@@ -2,6 +2,9 @@ name: "Build game"
 on: [push]
 env:
   GODOT_VERSION: 3.3.2
+  GODOT_VERSION_MAC: 3.3
+  EXPORT_NAME: existence
+  MM_RELEASE: 0_96
 jobs:
   export-web:
     name: Web Export 🌐
@@ -15,7 +18,7 @@ jobs:
           submodules: true
       - name: Setup 💻
         run: |
-          mkdir -v -p build/web ~/.local/share/godot/templates
+          mkdir -v -p build/${EXPORT_NAME}_${MM_RELEASE}_windows build/${EXPORT_NAME}_${MM_RELEASE}_linux build/${EXPORT_NAME}_${MM_RELEASE}_macosx ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Web Build 🔧
         run: godot -v --export "HTML5" ./build/web/index.html
@@ -44,9 +47,9 @@ jobs:
         with:
           docs-folder: "material_maker/doc"
       - name: Windows Build 🗔
-        run: godot -v --export "Windows" ./build/windows/LinwoodWorld.exe
+        run: godot -v --export "Windows" ./build/windows/{EXPORT_NAME}.exe
       - name: Linux Build 🐧
-        run: godot -v --export "Linux/X11" ./build/linux/LinwoodWorld.x86_64
+        run: godot -v --export "Linux/X11" ./build/linux/{EXPORT_NAME}.x86_64
       - name: Mac OSX Build 🐧
         run: godot -v --export "Mac OSX" ./build/macosx.zip
       - name: Unzip Mac OSX build 📁
