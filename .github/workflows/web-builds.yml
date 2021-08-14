@@ -61,15 +61,17 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '14.x'
       - uses: webfactory/ssh-agent@v0.5.0
         with:
           ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY }}
+      - name: Create app directory
+        run: mkdir docs/static/app
       - name: Copy web release
         uses: actions/download-artifact@v2
         with:
           name: web-build
-          path: docs/static
+          path: docs/static/app
       - name: Deploy
         working-directory: docs
         env:
