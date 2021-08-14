@@ -103,17 +103,17 @@ jobs:
         working-directory: game
         run: |
           unzip -a ./build/mac/Existence.zip -d ./build/mac
-          chmod +x ./build/mac/Existence.app/Contents/MacOS/Existence
+          chmod +x ./build/mac/Existence.app/Contents/MacOS/Existence-Dot
           rm ./build/mac/Existence.zip
       - name: Fix application icon 🖼
         working-directory: game
         run: sips -s format icns ./build/mac/Existence.app/Contents/Resources/icon.icns --out ./build/mac/Existence.app/Contents/Resources/icon.icns
       - name: Create DMG archive 🔧
         working-directory: game
-        run: hdiutil create -srcfolder ./build/mac -volname Existence ./build/mac/Existence.dmg
+        run: hdiutil create -srcfolder ./build/mac -volname Existence-Dot ./build/mac/Existence-Dot.dmg
       - name: Upload Artifact 🚀
         uses: actions/upload-artifact@v2
         with:
           name: Mac
-          path: ./game/build/mac/Existence.dmg
+          path: ./game/build/mac/Existence-Dot.dmg
           retention-days: 14
