@@ -7,7 +7,7 @@ on:
 
 env:
   GODOT_VERSION: 3.3.2
-  EXPORT_NAME: Existence
+  EXPORT_NAME: Existence-Dot
 
 jobs:
   export-web:
@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '14.x'
       - name: Test Build
         working-directory: docs
         run: |
