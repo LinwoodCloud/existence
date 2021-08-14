@@ -68,7 +68,7 @@ module.exports = {
           items: [
             {
               label: 'Blog',
-              to: '/blog',
+              href: 'https://linwood.dev/blog',
             },
             {
               label: 'GitHub',
