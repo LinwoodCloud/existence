@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 
+
 namespace ExistenceDot.Level
 {
     public class PlayerScript : KinematicBody
     {
-        public Vector3 Checkpoint { get; set; }
         [Export()]
         private float _gravity = -9.8f;
         [Export()]
@@ -20,29 +20,82 @@ namespace ExistenceDot.Level
         private Vector3 _velocity;
         private AnimationTree _animTree;
         private Camera _camera;
-        private PlayerData Data { get; set; }
+        private PlayerData _data = new PlayerData();
+        public PlayerData Data { get => _data; }
         [Serializable]
 
-        struct PlayerData
+        public class PlayerData : Godot.Object
         {
-            public Vector3? Checkpoint {get; set;}
-            public string CurrentScene {get; set;}
+            public Vector3? Checkpoint { get; set; }
+            public string CurrentScene { get; set; }
             public List<string> FinishedQuests { get; set; }
 
-            PlayerData(List<string> finishedQuests = null, string currentScene = null, Vector3? checkpoint = null)
+            public PlayerData(List<string> finishedQuests = null, string currentScene = null, Vector3? checkpoint = null)
             {
                 FinishedQuests = finishedQuests ?? new List<string>();
                 CurrentScene = currentScene ?? "";
                 Checkpoint = checkpoint;
             }
+
+            public Godot.Collections.Dictionary<string, object> Save() => new Godot.Collections.Dictionary<string, object>(){
+                { "checkpoint", Checkpoint },
+                { "current_scene", CurrentScene },
+                { "finished_quests", FinishedQuests }
+            };
+
+            public void Load(Godot.Collections.Dictionary<string, object> data)
+            {
+                if (data == null)
+                    return;
+                Checkpoint = data["checkpoint"] as Vector3?;
+                CurrentScene = data["current_scene"] as string;
+                FinishedQuests = data["finished_quests"] as List<string>;
+            }
         }
 
         public override void _Ready()
         {
-            Checkpoint = GlobalTransform.origin;
+            Data.Checkpoint = GlobalTransform.origin;
             _animTree = GetNode<AnimationTree>("AnimationTree");
             _camera = GetNode<Camera>("Target/Camera");
             SetPhysicsProcess(true);
+
+            LoadData();
+            SaveData();
+        }
+
+
+        public void LoadData()
+        {
+            var saveGame = new File();
+            if (!saveGame.FileExists("user://savegame.save"))
+                return;
+            saveGame.Open("user://savegame.save", File.ModeFlags.Read);
+            string text = saveGame.GetAsText();
+            GD.Print(text);
+            JSONParseResult dict = JSON.Parse(text);
+            saveGame.Close();
+            if (dict.Error != 0)
+            {
+                GD.Print("Error:", dict.ErrorLine);
+            }
+            else
+            {
+                if (dict.Result != null)
+                    _data.Load(dict.Result as Godot.Collections.Dictionary<string, object>);
+            }
+
+        }
+
+
+        public void SaveData()
+        {
+            var saveGame = new File();
+            saveGame.Open("user://savegame.save", File.ModeFlags.Write);
+            var json = JSON.Print(_data.Save());
+            GD.Print(json);
+            saveGame.StoreString(json);
+            saveGame.Close();
         }
 
         public override void _PhysicsProcess(float delta)
@@ -105,7 +158,8 @@ namespace ExistenceDot.Level
 
         public void TeleportToCheckpoint()
         {
-            GlobalTransform = new Transform(GlobalTransform.basis, Checkpoint);
+            if (Data.Checkpoint != null)
+                GlobalTransform = new Transform(GlobalTransform.basis, (Vector3)Data.Checkpoint);
         }
     }
 }

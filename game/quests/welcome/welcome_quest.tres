@@ -4,6 +4,8 @@
 
 [resource]
 script = ExtResource( 1 )
-Name = null
-Description = null
-UnlockableQuests = [  ]
+Name = ""
+Description = ""
+NextQuests = [  ]
+Scene = ""
+mainQuest = true
