@@ -1,6 +1,8 @@
-﻿using Godot;
+﻿#nullable enable
+using Godot;
 using System;
 using System.Collections.Generic;
+using ExistenceDot.Level.UI;
 
 
 namespace ExistenceDot.Level
@@ -18,10 +20,12 @@ namespace ExistenceDot.Level
         [Export()]
         private int _deAcceleration = 5;
         private Vector3 _velocity;
-        private AnimationTree _animTree;
-        private Camera _camera;
-        private PlayerData _data = new PlayerData();
-        public PlayerData Data { get => _data; }
+        private AnimationTree _animTree = null!;
+        private Camera _camera = null!;
+        private PlayerData Data { get; } = new PlayerData();
+        private QuestDisplay? _questDisplay = null;
+        private Queue<Quest.Quest> _questDisplayQueue = new Queue<Quest.Quest>();
+
         [Serializable]
 
         public class PlayerData : Godot.Object
@@ -30,10 +34,10 @@ namespace ExistenceDot.Level
             public string CurrentScene { get; set; }
             public List<string> FinishedQuests { get; set; }
 
-            public PlayerData(List<string> finishedQuests = null, string currentScene = null, Vector3? checkpoint = null)
+            public PlayerData(List<string>? finishedQuests = null, string currentScene = "", Vector3? checkpoint = null)
             {
                 FinishedQuests = finishedQuests ?? new List<string>();
-                CurrentScene = currentScene ?? "";
+                CurrentScene = currentScene;
                 Checkpoint = checkpoint;
             }
 
@@ -43,13 +47,13 @@ namespace ExistenceDot.Level
                 { "finished_quests", FinishedQuests }
             };
 
-            public void Load(Godot.Collections.Dictionary<string, object> data)
+            public void Load(Godot.Collections.Dictionary<string, object>? data)
             {
                 if (data == null)
                     return;
                 Checkpoint = data["checkpoint"] as Vector3?;
-                CurrentScene = data["current_scene"] as string;
-                FinishedQuests = data["finished_quests"] as List<string>;
+                CurrentScene = (data["current_scene"] as string)!;
+                FinishedQuests = (data["finished_quests"] as List<string>)!;
             }
         }
 
@@ -81,7 +85,7 @@ namespace ExistenceDot.Level
             else
             {
                 if (dict.Result != null)
-                    _data.Load(dict.Result as Godot.Collections.Dictionary<string, object>);
+                    Data.Load(dict.Result as Godot.Collections.Dictionary<string, object>);
             }
 
         }
@@ -91,7 +95,7 @@ namespace ExistenceDot.Level
         {
             var saveGame = new File();
             saveGame.Open("user://savegame.save", File.ModeFlags.Write);
-            var json = JSON.Print(_data.Save());
+            var json = JSON.Print(Data.Save());
             saveGame.StoreString(json);
             saveGame.Close();
         }
@@ -126,6 +130,11 @@ namespace ExistenceDot.Level
                 dir += gt.basis[0];
                 isMoving = true;
             }
+            if (Input.IsActionJustPressed("interact"))
+            {
+                GD.Print("queue quest");
+                ShowQuest(new Quest.Quest(){Name = "TestQuest", Description = "This is a description"});
+            }
             dir.y = 0;
             dir = dir.Normalized();
             _velocity.y += delta * _gravity;
@@ -158,6 +167,30 @@ namespace ExistenceDot.Level
         {
             if (Data.Checkpoint != null)
                 GlobalTransform = new Transform(GlobalTransform.basis, (Vector3)Data.Checkpoint);
+        }
+
+        private void ShowQuest(Quest.Quest quest)
+        {
+            _questDisplayQueue.Enqueue(quest);
+            ShowNewQuest();
+        }
+        
+        private void ShowNewQuest()
+        {
+            if (_questDisplay != null || _questDisplayQueue.Count == 0)
+                return;
+            GD.Print("Showing quest....");
+            var scene = ResourceLoader.Load<PackedScene>("level/ui/quest.tscn");
+            _questDisplay = scene.Instance<QuestDisplay>();
+            AddChild(_questDisplay);
+            _questDisplay.Show(_questDisplayQueue.Dequeue());
+            _questDisplay.Connect("tree_exited", this, nameof(RemoveQuestDisplay));
+        }
+
+        private void RemoveQuestDisplay()
+        {
+            _questDisplay = null;
+            ShowNewQuest();
         }
     }
 }

@@ -1,0 +1,130 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/ClosePanel-Kill.tres" type="Animation" id=1]
+[ext_resource path="res://level/ui/PauseMenuScript.cs" type="Script" id=2]
+[ext_resource path="res://ui/recolor.shader" type="Shader" id=3]
+[ext_resource path="res://fonts/Comfortaa-Title.tres" type="DynamicFont" id=4]
+[ext_resource path="res://ui/OpenPanel.tres" type="Animation" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 3 )
+shader_param/fuwafuwa_speed = 1.5
+shader_param/fuwafuwa_size = 0.5
+shader_param/fade = 1.0
+shader_param/recolored = null
+shader_param/alpha = 1.0
+
+[node name="Pause" type="Panel"]
+material = SubResource( 1 )
+anchor_left = 0.5
+anchor_top = -1.0
+anchor_right = 0.5
+anchor_bottom = -1.0
+margin_left = -300.0
+margin_top = -200.0
+margin_right = 300.0
+margin_bottom = 200.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfirmQuit" type="ConfirmationDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -103.5
+margin_top = -50.0
+margin_right = 196.5
+margin_bottom = 55.0
+rect_min_size = Vector2( 300, 105 )
+window_title = "Quit game?"
+dialog_text = "Do you really want to 
+quit the game?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfirmMain" type="ConfirmationDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -103.5
+margin_top = -50.0
+margin_right = 196.5
+margin_bottom = 55.0
+rect_min_size = Vector2( 300, 105 )
+window_title = "Back to main menu?"
+dialog_text = "Do you really want to 
+go to the main menu?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/ClosePanel = ExtResource( 1 )
+anims/OpenPanel = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 25.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 4 )
+text = "Pause"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 100.0
+margin_right = -20.0
+margin_bottom = -25.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+margin_right = 560.0
+margin_bottom = 51.0
+size_flags_vertical = 3
+text = "Resume"
+flat = true
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+margin_top = 55.0
+margin_right = 560.0
+margin_bottom = 107.0
+size_flags_vertical = 3
+text = "Options"
+flat = true
+
+[node name="WebsiteButton" type="Button" parent="VBoxContainer"]
+margin_top = 111.0
+margin_right = 560.0
+margin_bottom = 163.0
+size_flags_vertical = 3
+text = "Quests"
+flat = true
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+margin_top = 167.0
+margin_right = 560.0
+margin_bottom = 219.0
+size_flags_vertical = 3
+text = "Back to the main menu"
+flat = true
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+margin_top = 223.0
+margin_right = 560.0
+margin_bottom = 275.0
+size_flags_vertical = 3
+text = "Quit"
+flat = true
