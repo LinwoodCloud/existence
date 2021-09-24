@@ -6,7 +6,6 @@ namespace ExistenceDot.Level
     {
         public override void _Ready()
         {
-            
         }
     }
 }

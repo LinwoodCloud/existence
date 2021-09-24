@@ -3,33 +3,31 @@ using Godot;
 
 namespace ExistenceDot
 {
-    public class OptionsScript : Panel
+    public class OptionsScript : AnimatedPanel
     {
-        private OptionButton _resolutionOption;
         private TextEdit _customResolutionEdit;
-
-        private Slider _fpsSlider;
         private Label _fpsLabel;
 
-        private AnimationPlayer _animPlayer;
+        private Slider _fpsSlider;
+        private OptionButton _resolutionOption;
 
         private Button _revertButton, _applyButton;
 
         public override void _Ready()
         {
+            base._Ready();
             _resolutionOption = GetNode<OptionButton>("ScrollContainer/VBoxContainer/Resolution/OptionButton");
             _customResolutionEdit = GetNode<TextEdit>("ScrollContainer/VBoxContainer/Resolution/TextEdit");
             _resolutionOption.Connect("item_selected", this, nameof(ResolutionOptionChanged));
-            
+
             _fpsSlider = GetNode<HSlider>("ScrollContainer/VBoxContainer/FPS/HSlider");
             _fpsLabel = GetNode<Label>("ScrollContainer/VBoxContainer/FPS/ValueLabel");
             _fpsSlider.Connect("value_changed", this, nameof(FPSChanged));
 
-            _animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
             _revertButton = GetNode<Button>("HBoxContainer/RevertButton");
-            _revertButton.Connect("pressed", this, nameof(Hide));
+            _revertButton.Connect("pressed", this, nameof(HidePanel));
             _applyButton = GetNode<Button>("HBoxContainer/ApplyButton");
-            _applyButton.Connect("pressed", this, nameof(Hide));
+            _applyButton.Connect("pressed", this, nameof(HidePanel));
             Visible = false;
         }
 
@@ -46,17 +44,6 @@ namespace ExistenceDot
                 _fpsLabel.Text = "VSync";
             else
                 _fpsLabel.Text = fps.ToString();
-        }
-
-        public void Show()
-        {
-            Visible = true;
-            _animPlayer.Play("OpenPanel");
-        }
-
-        public void Hide()
-        {
-            _animPlayer.Play("ClosePanel-Kill");
         }
     }
 }

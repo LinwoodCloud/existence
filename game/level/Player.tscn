@@ -4,51 +4,51 @@
 [ext_resource path="res://level/PlayerScript.cs" type="Script" id=2]
 [ext_resource path="res://level/CameraFollow.cs" type="Script" id=3]
 
-[sub_resource type="CapsuleShape" id=11]
+[sub_resource type="CapsuleShape" id=1]
 radius = 0.54
 height = 1.55
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "FlyRun-loop"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "Idle-loop"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "Run-loop"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
 xfade_time = 0.3
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 xfade_time = 0.3
 
-[sub_resource type="AnimationNodeStateMachine" id=4]
-states/FlyRun-loop/node = SubResource( 6 )
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/FlyRun-loop/node = SubResource( 2 )
 states/FlyRun-loop/position = Vector2( 1284, 259.2 )
-states/Idle/node = SubResource( 7 )
+states/Idle/node = SubResource( 3 )
 states/Idle/position = Vector2( 933.6, 128.8 )
-states/Walking/node = SubResource( 8 )
+states/Walking/node = SubResource( 4 )
 states/Walking/position = Vector2( 1408.8, 141.6 )
-transitions = [ "Idle", "Walking", SubResource( 9 ), "Walking", "Idle", SubResource( 10 ) ]
+transitions = [ "Idle", "Walking", SubResource( 5 ), "Walking", "Idle", SubResource( 6 ) ]
 start_node = "Idle"
 graph_offset = Vector2( 40.0519, 25.1961 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.27408, 0 )
-shape = SubResource( 11 )
+shape = SubResource( 1 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 4 )
+tree_root = SubResource( 7 )
 anim_player = NodePath("../character_01/Character01/AnimationPlayer")
 active = true
 root_motion_track = NodePath(".:Root")
-parameters/playback = SubResource( 5 )
+parameters/playback = SubResource( 8 )
 
 [node name="character_01" parent="." instance=ExtResource( 1 )]
 

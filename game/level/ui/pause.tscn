@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/ClosePanel-Kill.tres" type="Animation" id=1]
 [ext_resource path="res://level/ui/PauseMenuScript.cs" type="Script" id=2]
 [ext_resource path="res://ui/recolor.shader" type="Shader" id=3]
 [ext_resource path="res://fonts/Comfortaa-Title.tres" type="DynamicFont" id=4]
 [ext_resource path="res://ui/OpenPanel.tres" type="Animation" id=5]
+[ext_resource path="res://fonts/Comfortaa-SmallTitle.tres" type="DynamicFont" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -17,9 +18,9 @@ shader_param/alpha = 1.0
 [node name="Pause" type="Panel"]
 material = SubResource( 1 )
 anchor_left = 0.5
-anchor_top = -1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = -1.0
+anchor_bottom = 0.5
 margin_left = -300.0
 margin_top = -200.0
 margin_right = 300.0
@@ -29,48 +30,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ConfirmQuit" type="ConfirmationDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -103.5
-margin_top = -50.0
-margin_right = 196.5
-margin_bottom = 55.0
-rect_min_size = Vector2( 300, 105 )
-window_title = "Quit game?"
-dialog_text = "Do you really want to 
-quit the game?"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ConfirmMain" type="ConfirmationDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -103.5
-margin_top = -50.0
-margin_right = 196.5
-margin_bottom = 55.0
-rect_min_size = Vector2( 300, 105 )
-window_title = "Back to main menu?"
-dialog_text = "Do you really want to 
-go to the main menu?"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/ClosePanel = ExtResource( 1 )
-anims/OpenPanel = ExtResource( 5 )
-
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 margin_top = 25.0
-margin_bottom = 41.0
+margin_bottom = 74.0
 custom_fonts/font = ExtResource( 4 )
 text = "Pause"
 align = 1
@@ -128,3 +91,69 @@ margin_bottom = 275.0
 size_flags_vertical = 3
 text = "Quit"
 flat = true
+
+[node name="WindowDialog" type="WindowDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -297.0
+margin_top = -182.0
+margin_right = 297.0
+margin_bottom = 182.0
+window_title = "Test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="WindowDialog/VBoxContainer"]
+margin_right = 594.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 6 )
+text = "Test"
+
+[node name="ConfirmQuit" type="ConfirmationDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -103.5
+margin_top = -50.0
+margin_right = 196.5
+margin_bottom = 55.0
+rect_min_size = Vector2( 300, 105 )
+window_title = "Quit game?"
+dialog_text = "Do you really want to 
+quit the game?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfirmMain" type="ConfirmationDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -103.5
+margin_top = -50.0
+margin_right = 196.5
+margin_bottom = 55.0
+rect_min_size = Vector2( 300, 105 )
+window_title = "Back to main menu?"
+dialog_text = "Do you really want to 
+go to the main menu?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/ClosePanel = ExtResource( 1 )
+anims/OpenPanel = ExtResource( 5 )

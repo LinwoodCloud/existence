@@ -16,7 +16,7 @@ ssao_enabled = true
 [node name="Spatial" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.8644, 25.7466, 56.2559 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.8644, 76.1563, 56.2559 )
 _deAcceleration = 10
 
 [node name="Home Island" parent="." instance=ExtResource( 1 )]

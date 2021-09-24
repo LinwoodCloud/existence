@@ -9,6 +9,7 @@ data = PoolVector3Array( -73.75, -5.0969, 60.9359, -72.157, -8.6302, 60.9105, -7
 [node name="HomeIsland" type="Spatial"]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 63.9362, 0 )
 mesh = ExtResource( 1 )
 skeleton = NodePath("")
 material/0 = null

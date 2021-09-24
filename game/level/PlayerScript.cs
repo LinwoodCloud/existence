@@ -1,61 +1,29 @@
-﻿#nullable enable
-using Godot;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ExistenceDot.Level.UI;
-
+using Godot;
+using Object = Godot.Object;
 
 namespace ExistenceDot.Level
 {
     public class PlayerScript : KinematicBody
     {
-        [Export()]
-        private float _gravity = -9.8f;
-        [Export()]
-        private int _deathpoint = 0;
-        [Export()]
-        private int _speed = 6;
-        [Export()]
+        [Export]
         private int _acceleration = 3;
-        [Export()]
-        private int _deAcceleration = 5;
-        private Vector3 _velocity;
         private AnimationTree _animTree = null!;
         private Camera _camera = null!;
+        [Export]
+        private int _deAcceleration = 5;
+        [Export]
+        private int _deathpoint;
+        [Export]
+        private float _gravity = -9.8f;
+        private QuestDisplay _questDisplay;
+        private readonly Queue<Quest.Quest> _questDisplayQueue = new Queue<Quest.Quest>();
+        [Export]
+        private int _speed = 6;
+        private Vector3 _velocity;
         private PlayerData Data { get; } = new PlayerData();
-        private QuestDisplay? _questDisplay = null;
-        private Queue<Quest.Quest> _questDisplayQueue = new Queue<Quest.Quest>();
-
-        [Serializable]
-
-        public class PlayerData : Godot.Object
-        {
-            public Vector3? Checkpoint { get; set; }
-            public string CurrentScene { get; set; }
-            public List<string> FinishedQuests { get; set; }
-
-            public PlayerData(List<string>? finishedQuests = null, string currentScene = "", Vector3? checkpoint = null)
-            {
-                FinishedQuests = finishedQuests ?? new List<string>();
-                CurrentScene = currentScene;
-                Checkpoint = checkpoint;
-            }
-
-            public Godot.Collections.Dictionary<string, object> Save() => new Godot.Collections.Dictionary<string, object>(){
-                { "checkpoint", Checkpoint },
-                { "current_scene", CurrentScene },
-                { "finished_quests", FinishedQuests }
-            };
-
-            public void Load(Godot.Collections.Dictionary<string, object>? data)
-            {
-                if (data == null)
-                    return;
-                Checkpoint = data["checkpoint"] as Vector3?;
-                CurrentScene = (data["current_scene"] as string)!;
-                FinishedQuests = (data["finished_quests"] as List<string>)!;
-            }
-        }
 
         public override void _Ready()
         {
@@ -87,7 +55,6 @@ namespace ExistenceDot.Level
                 if (dict.Result != null)
                     Data.Load(dict.Result as Godot.Collections.Dictionary<string, object>);
             }
-
         }
 
 
@@ -133,7 +100,7 @@ namespace ExistenceDot.Level
             if (Input.IsActionJustPressed("interact"))
             {
                 GD.Print("queue quest");
-                ShowQuest(new Quest.Quest(){Name = "TestQuest", Description = "This is a description"});
+                ShowQuest(new Quest.Quest {Name = "TestQuest", Description = "This is a description"});
             }
             dir.y = 0;
             dir = dir.Normalized();
@@ -174,7 +141,7 @@ namespace ExistenceDot.Level
             _questDisplayQueue.Enqueue(quest);
             ShowNewQuest();
         }
-        
+
         private void ShowNewQuest()
         {
             if (_questDisplay != null || _questDisplayQueue.Count == 0)
@@ -191,6 +158,40 @@ namespace ExistenceDot.Level
         {
             _questDisplay = null;
             ShowNewQuest();
+        }
+
+        [Serializable]
+        public class PlayerData : Object
+        {
+            public PlayerData(List<string> finishedQuests = null, string currentScene = "", Vector3? checkpoint = null)
+            {
+                FinishedQuests = finishedQuests ?? new List<string>();
+                CurrentScene = currentScene;
+                Checkpoint = checkpoint;
+            }
+
+            public Vector3? Checkpoint { get; set; }
+            public string CurrentScene { get; set; }
+            public List<string> FinishedQuests { get; set; }
+
+            public Godot.Collections.Dictionary<string, object> Save()
+            {
+                return new Godot.Collections.Dictionary<string, object>
+                {
+                    {"checkpoint", Checkpoint},
+                    {"current_scene", CurrentScene},
+                    {"finished_quests", FinishedQuests}
+                };
+            }
+
+            public void Load(Godot.Collections.Dictionary<string, object> data)
+            {
+                if (data == null)
+                    return;
+                Checkpoint = data["checkpoint"] as Vector3?;
+                CurrentScene = (data["current_scene"] as string)!;
+                FinishedQuests = (data["finished_quests"] as List<string>)!;
+            }
         }
     }
 }

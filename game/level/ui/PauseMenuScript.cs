@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public class PauseMenuScript : Node
 {
@@ -34,7 +33,6 @@ public class PauseMenuScript : Node
 
     private void OpenOptions()
     {
-        
     }
 
     private void ResumeGame()

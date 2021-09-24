@@ -4,18 +4,18 @@ namespace ExistenceDot.Level.UI
 {
     public class QuestDisplay : Control
     {
+        private AnimationPlayer _animationPlayer;
         // Declare member variables here. Examples:
         // private int a = 2;
         // private string b = "text";
 
         // Called when the node enters the scene tree for the first time.
         private Label _title, _description;
-        private AnimationPlayer _animationPlayer;
-        
+
         public override void _Ready()
         {
-            _title = GetNode<Label>("VBoxContainer/Title");
-            _description = GetNode<Label>("VBoxContainer/Description");
+            _title = GetNode<Label>("Panel/VBoxContainer/Title");
+            _description = GetNode<Label>("Panel/VBoxContainer/Description");
             _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         }
 

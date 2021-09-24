@@ -55,7 +55,7 @@ jobs:
         run: godot -v --export "Linux/X11 64-bit" ./build/linux-64bit/$EXPORT_NAME.x86_64
       - name: Give execute permission ☑️
         working-directory: game
-        run: 
+        run:
           chmod +x ./build/linux-64bit/$EXPORT_NAME.x86_64
       - name: Create tar.gz archive 🗜️
         working-directory: game
