@@ -19,6 +19,7 @@ namespace ExistenceDot.Level
         [Export]
         private float _gravity = -9.8f;
         private QuestDisplay _questDisplay;
+        private PauseMenuScript _pauseMenu;
         private readonly Queue<Quest.Quest> _questDisplayQueue = new Queue<Quest.Quest>();
         [Export]
         private int _speed = 6;
@@ -30,6 +31,7 @@ namespace ExistenceDot.Level
             Data.Checkpoint = GlobalTransform.origin;
             _animTree = GetNode<AnimationTree>("AnimationTree");
             _camera = GetNode<Camera>("Target/Camera");
+            _pauseMenu = GetNode<PauseMenuScript>("Pause");
             SetPhysicsProcess(true);
 
             LoadData();
@@ -101,6 +103,10 @@ namespace ExistenceDot.Level
             {
                 GD.Print("queue quest");
                 ShowQuest(new Quest.Quest {Name = "TestQuest", Description = "This is a description"});
+            }
+            if (Input.IsActionJustPressed("ui_cancel"))
+            {
+                _pauseMenu.TogglePause();
             }
             dir.y = 0;
             dir = dir.Normalized();

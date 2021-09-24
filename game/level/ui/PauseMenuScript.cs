@@ -1,6 +1,7 @@
+using ExistenceDot;
 using Godot;
 
-public class PauseMenuScript : Node
+public class PauseMenuScript : AnimatedPanel
 {
     // Declare member variables here. Examples:
     // private int a = 2;
@@ -9,6 +10,7 @@ public class PauseMenuScript : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        base._Ready();
         GetNode<Button>("VBoxContainer/ResumeButton").Connect("pressed", this, nameof(ResumeGame));
         GetNode<Button>("VBoxContainer/OptionsButton").Connect("pressed", this, nameof(OpenOptions));
         GetNode<Button>("VBoxContainer/BackButton").Connect("pressed", this, nameof(BackToMainMenu));
@@ -23,6 +25,7 @@ public class PauseMenuScript : Node
 
     private void BackToMainMenu()
     {
+        ResumeGame();
         GetTree().ChangeScene("res://main/menu.tscn");
     }
 
@@ -35,8 +38,23 @@ public class PauseMenuScript : Node
     {
     }
 
-    private void ResumeGame()
+    public void ResumeGame()
     {
         GetTree().Paused = false;
+        HidePanel();
+    }
+
+    public void PauseGame()
+    {
+        GetTree().Paused = true;
+        ShowPanel();
+    }
+
+    public void TogglePause()
+    {
+        if(GetTree().Paused)
+            ResumeGame();
+        else
+            PauseGame();
     }
 }

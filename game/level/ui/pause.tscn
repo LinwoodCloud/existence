@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://ui/ClosePanel-Kill.tres" type="Animation" id=1]
+[ext_resource path="res://ui/ClosePanel.tres" type="Animation" id=1]
 [ext_resource path="res://level/ui/PauseMenuScript.cs" type="Script" id=2]
 [ext_resource path="res://ui/recolor.shader" type="Shader" id=3]
 [ext_resource path="res://fonts/Comfortaa-Title.tres" type="DynamicFont" id=4]
@@ -16,6 +16,7 @@ shader_param/recolored = null
 shader_param/alpha = 1.0
 
 [node name="Pause" type="Panel"]
+pause_mode = 2
 material = SubResource( 1 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -93,7 +94,6 @@ text = "Quit"
 flat = true
 
 [node name="WindowDialog" type="WindowDialog" parent="."]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
