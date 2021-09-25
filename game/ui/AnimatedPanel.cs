@@ -25,5 +25,15 @@ namespace ExistenceDot
             _animPlayer.Play("ClosePanel");
             _backPanel?.ShowPanel();
         }
+
+        private void PanelShown()
+        {
+            
+        }
+
+        private void PanelHidden()
+        {
+            Visible = false;
+        }
     }
 }

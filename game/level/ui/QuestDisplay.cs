@@ -14,8 +14,8 @@ namespace ExistenceDot.Level.UI
 
         public override void _Ready()
         {
-            _title = GetNode<Label>("Panel/VBoxContainer/Title");
-            _description = GetNode<Label>("Panel/VBoxContainer/Description");
+            _title = GetNode<Label>("VBoxContainer/Title");
+            _description = GetNode<Label>("VBoxContainer/Description");
             _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         }
 

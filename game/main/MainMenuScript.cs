@@ -10,6 +10,7 @@ namespace ExistenceDot
 
         // Called when the node enters the scene tree for the first time.
         private OptionsScript _options;
+        private AnimatedPanel _credits;
 
         public override void _Ready()
         {
@@ -21,6 +22,7 @@ namespace ExistenceDot
             GetNode<Button>("VBoxContainer/CreditsButton").Connect("pressed", this, nameof(OpenCredits));
             GetNode<Button>("VBoxContainer/QuitButton").Connect("pressed", this, nameof(QuitGame));
             _options = GetNode<OptionsScript>("../Options");
+            _credits = GetNode<AnimatedPanel>("../Credits");
         }
 
         public void ConfirmQuit()
@@ -59,6 +61,7 @@ namespace ExistenceDot
 
         public void OpenCredits()
         {
+            _credits.ShowPanel(this);
         }
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
