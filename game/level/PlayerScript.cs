@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ExistenceDot.Level.UI;
 using Godot;
-using Object = Godot.Object;
 
 namespace ExistenceDot.Level
 {
@@ -15,7 +13,7 @@ namespace ExistenceDot.Level
         [Export]
         private int _deAcceleration = 5;
         [Export]
-        private int _deathpoint;
+        private int _deathPoint = 0;
         [Export]
         private float _gravity = -9.8f;
         private QuestDisplay _questDisplay;
@@ -24,54 +22,22 @@ namespace ExistenceDot.Level
         [Export]
         private int _speed = 6;
         private Vector3 _velocity;
-        private PlayerData Data { get; } = new PlayerData();
 
         public override void _Ready()
         {
-            Data.Checkpoint = GlobalTransform.origin;
+            var playerData = PlayerData.Load();
+            playerData.Checkpoint = GlobalTransform.origin;
+            playerData.Save();
             _animTree = GetNode<AnimationTree>("AnimationTree");
             _camera = GetNode<Camera>("Target/Camera");
             _pauseMenu = GetNode<PauseMenuScript>("Pause");
             SetPhysicsProcess(true);
 
-            LoadData();
-            SaveData();
-        }
-
-
-        public void LoadData()
-        {
-            var saveGame = new File();
-            if (!saveGame.FileExists("user://savegame.save"))
-                return;
-            saveGame.Open("user://savegame.save", File.ModeFlags.Read);
-            string text = saveGame.GetAsText();
-            JSONParseResult dict = JSON.Parse(text);
-            saveGame.Close();
-            if (dict.Error != 0)
-            {
-                GD.Print("Error:", dict.ErrorLine);
-            }
-            else
-            {
-                if (dict.Result != null)
-                    Data.Load(dict.Result as Godot.Collections.Dictionary<string, object>);
-            }
-        }
-
-
-        public void SaveData()
-        {
-            var saveGame = new File();
-            saveGame.Open("user://savegame.save", File.ModeFlags.Write);
-            var json = JSON.Print(Data.Save());
-            saveGame.StoreString(json);
-            saveGame.Close();
         }
 
         public override void _PhysicsProcess(float delta)
         {
-            if (GlobalTransform.origin.y < _deathpoint)
+            if (GlobalTransform.origin.y < _deathPoint)
             {
                 TeleportToCheckpoint();
                 return;
@@ -138,8 +104,9 @@ namespace ExistenceDot.Level
 
         public void TeleportToCheckpoint()
         {
-            if (Data.Checkpoint != null)
-                GlobalTransform = new Transform(GlobalTransform.basis, (Vector3)Data.Checkpoint);
+            var playerData = PlayerData.Load();
+            if (playerData.Checkpoint != null)
+                GlobalTransform = new Transform(GlobalTransform.basis, (Vector3)playerData.Checkpoint);
         }
 
         private void ShowQuest(Quest.Quest quest)
@@ -166,38 +133,5 @@ namespace ExistenceDot.Level
             ShowNewQuest();
         }
 
-        [Serializable]
-        public class PlayerData : Object
-        {
-            public PlayerData(List<string> finishedQuests = null, string currentScene = "", Vector3? checkpoint = null)
-            {
-                FinishedQuests = finishedQuests ?? new List<string>();
-                CurrentScene = currentScene;
-                Checkpoint = checkpoint;
-            }
-
-            public Vector3? Checkpoint { get; set; }
-            public string CurrentScene { get; set; }
-            public List<string> FinishedQuests { get; set; }
-
-            public Godot.Collections.Dictionary<string, object> Save()
-            {
-                return new Godot.Collections.Dictionary<string, object>
-                {
-                    {"checkpoint", Checkpoint},
-                    {"current_scene", CurrentScene},
-                    {"finished_quests", FinishedQuests}
-                };
-            }
-
-            public void Load(Godot.Collections.Dictionary<string, object> data)
-            {
-                if (data == null)
-                    return;
-                Checkpoint = data["checkpoint"] as Vector3?;
-                CurrentScene = (data["current_scene"] as string)!;
-                FinishedQuests = (data["finished_quests"] as List<string>)!;
-            }
-        }
     }
 }

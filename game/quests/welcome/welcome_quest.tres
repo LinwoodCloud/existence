@@ -6,6 +6,5 @@
 script = ExtResource( 1 )
 Name = ""
 Description = ""
-NextQuests = [  ]
 Scene = ""
 MainQuest = true

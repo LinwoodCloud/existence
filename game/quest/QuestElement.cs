@@ -1,12 +1,14 @@
+using System;
 using ExistenceDot.Level;
 using Godot;
+using Godot.Collections;
 
 namespace ExistenceDot.Quest
 {
+    [Serializable]
     public abstract class QuestElement : Spatial
     {
         private PlayerScript _player;
-        public Quest NextQuest { get; }
 
         public override void _Ready()
         {
