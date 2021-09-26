@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fonts/Comfortaa-Title.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/recolor.shader" type="Shader" id=2]
+[ext_resource path="res://loading/LoadingScript.cs" type="Script" id=3]
+[ext_resource path="res://ui/ClosePanel.tres" type="Animation" id=4]
+[ext_resource path="res://ui/OpenPanel.tres" type="Animation" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -11,29 +14,26 @@ shader_param/fade = 1.0
 shader_param/recolored = null
 shader_param/alpha = 1.0
 
-[node name="Control" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, -138.102 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="LoadingLayer" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="Loading" type="Panel" parent="."]
 material = SubResource( 1 )
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = -1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = -1.0
 margin_left = -300.0
-margin_top = -100.0
+margin_top = -200.0
 margin_right = 300.0
-margin_bottom = 100.0
+margin_bottom = 200.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Panel2"]
+[node name="Title" type="Label" parent="Loading"]
 anchor_right = 1.0
 margin_top = 24.1091
 margin_bottom = 73.1091
@@ -44,18 +44,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ProgressBar" type="ProgressBar" parent="Panel2"]
+[node name="ProgressBar" type="ProgressBar" parent="Loading"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -30.0
-value = 42.72
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label2" type="Label" parent="Panel2"]
+[node name="Hint" type="Label" parent="Loading"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 90.0
 margin_bottom = -40.0
 text = "Help Text"
 align = 1
-valign = 1
+valign = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Loading"]
+anims/ClosePanel = ExtResource( 4 )
+anims/OpenPanel = ExtResource( 5 )

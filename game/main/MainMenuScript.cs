@@ -1,3 +1,4 @@
+using ExistenceDot.Loading;
 using Godot;
 
 namespace ExistenceDot
@@ -47,7 +48,8 @@ namespace ExistenceDot
 
         public void StartGame()
         {
-            GetTree().ChangeScene("res://level/LevelScene.tscn");
+            var loading = GetNode<LoadingScript>("/root/LoadingScreen/Loading");
+            loading.LoadScene("res://level/LevelScene.tscn", this);
         }
 
         public void OpenOptions()

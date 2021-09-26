@@ -6,10 +6,16 @@ namespace ExistenceDot
     {
         private AnimationPlayer _animPlayer;
         private AnimatedPanel _backPanel;
+        [Export()]
+        public bool AnimateIn;
 
         public override void _Ready()
         {
             _animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+            if(AnimateIn)
+                ShowPanel();
+            else
+                Visible = false;
         }
 
         public void ShowPanel(AnimatedPanel backPanel = null)
@@ -23,7 +29,8 @@ namespace ExistenceDot
         public void HidePanel()
         {
             _animPlayer.Play("ClosePanel");
-            _backPanel?.ShowPanel();
+            if(_backPanel != null && IsInstanceValid(_backPanel))
+                _backPanel?.ShowPanel();
         }
 
         private void PanelShown()

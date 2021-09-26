@@ -38,6 +38,8 @@ namespace ExistenceDot.Level
                 return new PlayerData();
             saveGame.Open("user://savegame.save", File.ModeFlags.Read);
             var text = saveGame.GetAsText();
+            if (text.Empty())
+                return new PlayerData();
             var dict = JSON.Parse(text);
             if (dict.Error != 0 && dict.Result != null)
             {

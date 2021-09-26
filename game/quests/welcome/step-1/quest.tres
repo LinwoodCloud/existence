@@ -8,3 +8,4 @@ Name = ""
 Description = ""
 Scene = ""
 MainQuest = true
+ParentQuest = ""

@@ -1,4 +1,5 @@
 using ExistenceDot;
+using ExistenceDot.Loading;
 using Godot;
 
 public class PauseMenuScript : AnimatedPanel
@@ -26,7 +27,8 @@ public class PauseMenuScript : AnimatedPanel
     private void BackToMainMenu()
     {
         ResumeGame();
-        GetTree().ChangeScene("res://main/menu.tscn");
+        var loading = GetNode<LoadingScript>("/root/LoadingScreen/Loading");
+        loading.LoadScene("res://main/menu.tscn", this);
     }
 
     private void QuitGame()
