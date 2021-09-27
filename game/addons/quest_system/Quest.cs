@@ -1,9 +1,8 @@
-using System.Collections.Generic;
 using Godot;
-using Godot.Collections;
 
 namespace ExistenceDot.Quest
 {
+    [Tool]
     public class Quest : Resource
     {
         // Make sure that every parameter has a default value.

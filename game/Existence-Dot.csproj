@@ -6,6 +6,7 @@
     </PropertyGroup>
     <ItemGroup>
         <Folder Include="game" />
+        <Folder Include="quest" />
     </ItemGroup>
     <ItemGroup>
       <Reference Include="Microsoft.CSharp" />
