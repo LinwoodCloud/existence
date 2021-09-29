@@ -18,7 +18,7 @@ namespace ExistenceDot
                 Visible = false;
         }
 
-        public void ShowPanel(AnimatedPanel backPanel = null)
+        public virtual void ShowPanel(AnimatedPanel backPanel = null)
         {
             Visible = true;
             _animPlayer.Play("OpenPanel");
