@@ -6,7 +6,7 @@ namespace ExistenceDot
     {
         private AnimationPlayer _animPlayer;
         private AnimatedPanel _backPanel;
-        [Export()]
+        [Export]
         public bool AnimateIn;
 
         public override void _Ready()

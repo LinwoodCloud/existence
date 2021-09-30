@@ -56,38 +56,9 @@ margin_right = 560.0
 margin_bottom = 89.0
 size_flags_horizontal = 3
 
-[node name="Resolution" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-margin_right = 560.0
-margin_bottom = 27.0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Resolution"]
-margin_right = 278.0
-margin_bottom = 27.0
-size_flags_horizontal = 3
-text = "Resolution"
-
-[node name="OptionButton" type="OptionButton" parent="ScrollContainer/VBoxContainer/Resolution"]
-margin_left = 282.0
-margin_right = 560.0
-margin_bottom = 27.0
-size_flags_horizontal = 3
-text = "640x360"
-flat = true
-items = [ "640x360", null, false, 0, null, "800x600", null, false, 1, null, "1024x768", null, false, 2, null, "1280x720", null, false, 3, null, "1280x800", null, false, 4, null, "1280x1024", null, false, 5, null, "1360x768", null, false, 6, null, "1366x768", null, false, 7, null, "1440x900", null, false, 8, null, "1536x864", null, false, 9, null, "1600x900", null, false, 12, null, "1680x1050", null, false, 13, null, "1920x1080", null, false, 14, null, "1920x1200", null, false, 15, null, "2048x1152", null, false, 16, null, "2560x1080", null, false, 17, null, "2560x1440", null, false, 18, null, "3440x1440", null, false, 19, null, "3840x2160", null, false, 20, null, "Custom", null, false, 21, null ]
-selected = 0
-
-[node name="TextEdit" type="TextEdit" parent="ScrollContainer/VBoxContainer/Resolution"]
-visible = false
-margin_left = 360.0
-margin_right = 560.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 200, 0 )
-hint_tooltip = "Custom resolution"
-
 [node name="Language" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-margin_top = 31.0
 margin_right = 560.0
-margin_bottom = 58.0
+margin_bottom = 27.0
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Language"]
 margin_right = 278.0
@@ -114,9 +85,9 @@ rect_min_size = Vector2( 200, 0 )
 hint_tooltip = "Custom resolution"
 
 [node name="FPS" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-margin_top = 62.0
+margin_top = 31.0
 margin_right = 560.0
-margin_bottom = 89.0
+margin_bottom = 58.0
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/FPS"]
 margin_right = 226.0
@@ -139,6 +110,16 @@ margin_bottom = 27.0
 rect_min_size = Vector2( 100, 0 )
 text = "Value"
 align = 2
+
+[node name="Fullscreen" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 560.0
+margin_bottom = 89.0
+
+[node name="CheckBox" type="CheckBox" parent="ScrollContainer/VBoxContainer/Fullscreen"]
+margin_right = 175.0
+margin_bottom = 27.0
+text = "Toggle fullscreen"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_top = 1.0
