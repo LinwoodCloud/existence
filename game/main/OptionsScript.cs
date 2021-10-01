@@ -17,7 +17,7 @@ namespace ExistenceDot
 
         public struct GameOptions
         {
-            public GameOptions(string locale, bool fullscreen = true, int fps = 0)
+            public GameOptions(string locale = "en", bool fullscreen = true, int fps = 0)
             {
                 Locale = locale;
                 Fullscreen = fullscreen;
@@ -30,14 +30,15 @@ namespace ExistenceDot
 
             public void Save()
             {
-                var saveGame = new File();
-                saveGame.Open("user://options.save", File.ModeFlags.Write);
-                saveGame.StoreString(JSON.Print(new Godot.Collections.Dictionary<string, object>
+                var saveOptions = new File();
+                saveOptions.Open("user://options.save", File.ModeFlags.Write);
+                saveOptions.StoreString(JSON.Print(new Godot.Collections.Dictionary<string, object>
                 {
                     {"locale", Locale},
                     {"fullscreen", Fullscreen},
                     {"fps", Fps}
                 }));
+                saveOptions.Close();
             }
 
             public static GameOptions Load()
@@ -49,8 +50,9 @@ namespace ExistenceDot
                 var text = saveOptions.GetAsText();
                 if (text.Empty())
                     return new GameOptions();
+                GD.Print(text);
                 var dict = JSON.Parse(text);
-                if (dict.Error != Error.Ok || dict.Result != null)
+                if (dict.Error != Error.Ok )
                 {
                     GD.Print("Error:", dict.ErrorLine);
                     saveOptions.Close();
@@ -69,7 +71,7 @@ namespace ExistenceDot
             {
                 return new GameOptions()
                 {
-                    Locale = data["locale"] as string,
+                    Locale = data["locale"] as string ?? "en",
                     Fullscreen = data["fullscreen"] as bool? ?? true,
                     Fps = data["fps"] as int? ?? 0
                 };
