@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/recolor.shader" type="Shader" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.5, 0.5, 0.5 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/recolored = Color( 1, 0, 0, 1 )
+shader_param/alpha = 1.0
+
+[node name="Spatial" type="MeshInstance"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )

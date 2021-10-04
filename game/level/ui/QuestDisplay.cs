@@ -1,3 +1,4 @@
+using ExistenceDot.QuestSystem;
 using Godot;
 
 namespace ExistenceDot.Level.UI
@@ -20,7 +21,7 @@ namespace ExistenceDot.Level.UI
         }
 
 
-        public void Show(Quest.Quest quest)
+        public void Show(Quest quest)
         {
             _title.Text = quest.Name;
             _description.Text = quest.Description;

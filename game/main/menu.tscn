@@ -41,9 +41,6 @@ tracks/1/keys = {
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 4 )
-shader_param/fuwafuwa_speed = 1.5
-shader_param/fuwafuwa_size = 0.5
-shader_param/fade = 1.0
 shader_param/recolored = null
 shader_param/alpha = 1.0
 
