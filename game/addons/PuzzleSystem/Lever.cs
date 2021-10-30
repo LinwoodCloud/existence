@@ -6,7 +6,7 @@ namespace ExistenceDot.PuzzleSystem
     public class Lever : MeshInstance, IPuzzle
     {
         private AnimationPlayer _animPlayer;
-        [Export] public Array<Connection> Connections { get; } = new Array<Connection>();
+        [Export] public Array<Connection> Connections { get; set; } = new Array<Connection>();
         [Export] public Color ActivatedColor { get; set; }
         [Export] public Color DeactivatedColor { get; set; }
         [Export] public bool Activated { get; set; }

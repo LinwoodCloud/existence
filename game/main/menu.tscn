@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://fonts/Comfortaa-SmallTitle-Outlined.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/ClosePanel.tres" type="Animation" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://main/options.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/OpenPanel.tres" type="Animation" id=8]
 [ext_resource path="res://main/CreditsScript.cs" type="Script" id=9]
+[ext_resource path="res://ui/purple_theme.tres" type="Theme" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -75,6 +76,7 @@ transform = Transform( 1, -5.52973e-10, 0, 2.91038e-10, 1, 7.45058e-09, -4.65661
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

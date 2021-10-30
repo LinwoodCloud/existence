@@ -25,12 +25,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/PuzzleSystem/plugin.cfg", "res://addons/QuestSystem/plugin.cfg" )
-
-[gui]
-
-theme/custom="res://ui/theme.tres"
-theme/custom_font="res://fonts/Comfortaa.tres"
+enabled=PoolStringArray( "res://addons/PuzzleSystem/plugin.cfg" )
 
 [input]
 
