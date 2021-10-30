@@ -1,6 +1,6 @@
 using Godot;
 
-namespace ExistenceDot.Quest
+namespace ExistenceDot.QuestSystem
 {
     [Tool]
     public class Quest : Resource

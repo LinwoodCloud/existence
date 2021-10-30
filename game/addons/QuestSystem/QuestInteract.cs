@@ -1,6 +1,6 @@
 using Godot;
 
-namespace ExistenceDot.Quest
+namespace ExistenceDot.QuestSystem
 {
     public class QuestInteract : Node
     {

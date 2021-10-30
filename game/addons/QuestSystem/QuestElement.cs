@@ -1,9 +1,8 @@
 using System;
 using ExistenceDot.Level;
 using Godot;
-using Godot.Collections;
 
-namespace ExistenceDot.Quest
+namespace ExistenceDot.QuestSystem
 {
     [Serializable]
     public abstract class QuestElement : Spatial

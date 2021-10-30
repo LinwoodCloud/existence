@@ -5,10 +5,13 @@
         <LangVersion>8</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-        <Folder Include="game" />
-        <Folder Include="quest" />
+        <Folder Include="game"/>
+        <Folder Include="quest"/>
     </ItemGroup>
     <ItemGroup>
-      <Reference Include="Microsoft.CSharp" />
+        <Reference Include="Microsoft.CSharp"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="addons\PuzzleSystem\plugin.cfg"/>
     </ItemGroup>
 </Project>
