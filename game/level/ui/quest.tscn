@@ -18,7 +18,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 9, 10 ),
 "transitions": PoolRealArray( -2, -2, -2, -2 ),
 "update": 0,
-"values": [ -75.0, 0.0, 0.0, -75.0 ]
+"values": [ -80.0, 15.0, 15.0, -75.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:margin_bottom")
@@ -30,7 +30,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1, 9, 10 ),
 "transitions": PoolRealArray( -2, -2, -2, -2 ),
 "update": 0,
-"values": [ 0.0, 75.0, 75.0, 0.0 ]
+"values": [ 0.0, 95.0, 95.0, 0.0 ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
@@ -61,11 +61,25 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 75.0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -80.0 ]
+}
 
 [node name="Panel" type="Panel"]
 pause_mode = 2
 anchor_right = 1.0
-margin_top = -75.0
+margin_left = 15.0
+margin_top = -80.0
+margin_right = -15.0
 margin_bottom = 75.0
 theme = ExtResource( 4 )
 script = ExtResource( 3 )
@@ -82,7 +96,7 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="VBoxContainer"]
-margin_right = 1024.0
+margin_right = 994.0
 margin_bottom = 28.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 1 )
@@ -91,16 +105,16 @@ align = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 margin_top = 32.0
-margin_right = 1024.0
+margin_right = 994.0
 margin_bottom = 36.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Description" type="Label" parent="VBoxContainer"]
-margin_top = 45.0
-margin_right = 1024.0
-margin_bottom = 64.0
+margin_top = 48.0
+margin_right = 994.0
+margin_bottom = 67.0
 size_flags_vertical = 6
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 2 )

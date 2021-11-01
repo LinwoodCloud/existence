@@ -1,16 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://fonts/Comfortaa-Title.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/recolor.shader" type="Shader" id=2]
 [ext_resource path="res://loading/LoadingScript.cs" type="Script" id=3]
 [ext_resource path="res://ui/ClosePanel.tres" type="Animation" id=4]
 [ext_resource path="res://ui/OpenPanel.tres" type="Animation" id=5]
+[ext_resource path="res://ui/purple_theme.tres" type="Theme" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
-shader_param/fuwafuwa_speed = 1.5
-shader_param/fuwafuwa_size = 0.5
-shader_param/fade = 1.0
 shader_param/recolored = null
 shader_param/alpha = 1.0
 
@@ -28,6 +26,7 @@ margin_left = -300.0
 margin_top = -200.0
 margin_right = 300.0
 margin_bottom = 200.0
+theme = ExtResource( 6 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

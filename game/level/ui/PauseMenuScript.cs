@@ -38,6 +38,9 @@ public class PauseMenuScript : AnimatedPanel
 
     private void OpenOptions()
     {
+        var options = ResourceLoader.Load<PackedScene>("res://main/options.tscn").Instance<OptionsScript>();
+        GetParent().AddChild(options);
+        options.ShowPanel(this);
     }
 
     public void ResumeGame()
