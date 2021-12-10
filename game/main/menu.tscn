@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://fonts/Comfortaa-SmallTitle-Outlined.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/existence_dark.tres" type="Theme" id=1]
 [ext_resource path="res://ui/ClosePanel.tres" type="Animation" id=2]
 [ext_resource path="res://main/MainMenuScript.cs" type="Script" id=3]
 [ext_resource path="res://ui/recolor.shader" type="Shader" id=4]
@@ -9,7 +9,7 @@
 [ext_resource path="res://main/options.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/OpenPanel.tres" type="Animation" id=8]
 [ext_resource path="res://main/CreditsScript.cs" type="Script" id=9]
-[ext_resource path="res://ui/purple_theme.tres" type="Theme" id=10]
+[ext_resource path="res://fonts/Teko-Regular.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -45,11 +45,17 @@ shader = ExtResource( 4 )
 shader_param/recolored = null
 shader_param/alpha = 1.0
 
-[sub_resource type="ProceduralSky" id=3]
+[sub_resource type="DynamicFont" id=43]
+size = 36
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 10 )
+
+[sub_resource type="ProceduralSky" id=41]
 
 [sub_resource type="Environment" id=4]
 background_mode = 2
-background_sky = SubResource( 3 )
+background_sky = SubResource( 41 )
 fog_enabled = true
 fog_color = Color( 0.337255, 0.341176, 0.341176, 1 )
 fog_sun_color = Color( 1, 0.901961, 0.701961, 1 )
@@ -76,7 +82,7 @@ transform = Transform( 1, -5.52973e-10, 0, 2.91038e-10, 1, 7.45058e-09, -4.65661
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 10 )
+theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -101,7 +107,7 @@ AnimateIn = true
 anchor_right = 1.0
 margin_top = 25.0
 margin_bottom = 41.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = SubResource( 43 )
 text = "Existence."
 align = 1
 __meta__ = {
@@ -114,7 +120,7 @@ anchor_bottom = 1.0
 margin_left = 20.0
 margin_top = 100.0
 margin_right = -20.0
-margin_bottom = -25.0
+margin_bottom = -16.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -122,47 +128,47 @@ __meta__ = {
 
 [node name="StartButton" type="Button" parent="Control/MainMenu/VBoxContainer"]
 margin_right = 560.0
-margin_bottom = 42.0
+margin_bottom = 44.0
 size_flags_vertical = 3
 text = "Start"
 flat = true
 
 [node name="OptionsButton" type="Button" parent="Control/MainMenu/VBoxContainer"]
-margin_top = 46.0
+margin_top = 48.0
 margin_right = 560.0
-margin_bottom = 89.0
+margin_bottom = 92.0
 size_flags_vertical = 3
 text = "Options"
 flat = true
 
 [node name="WebsiteButton" type="Button" parent="Control/MainMenu/VBoxContainer"]
-margin_top = 93.0
+margin_top = 96.0
 margin_right = 560.0
-margin_bottom = 135.0
+margin_bottom = 140.0
 size_flags_vertical = 3
 text = "Website"
 flat = true
 
 [node name="CommunityButton" type="Button" parent="Control/MainMenu/VBoxContainer"]
-margin_top = 139.0
+margin_top = 144.0
 margin_right = 560.0
-margin_bottom = 182.0
+margin_bottom = 188.0
 size_flags_vertical = 3
 text = "Community"
 flat = true
 
 [node name="CreditsButton" type="Button" parent="Control/MainMenu/VBoxContainer"]
-margin_top = 186.0
+margin_top = 192.0
 margin_right = 560.0
-margin_bottom = 228.0
+margin_bottom = 236.0
 size_flags_vertical = 3
 text = "Credits"
 flat = true
 
 [node name="QuitButton" type="Button" parent="Control/MainMenu/VBoxContainer"]
-margin_top = 232.0
+margin_top = 240.0
 margin_right = 560.0
-margin_bottom = 275.0
+margin_bottom = 284.0
 size_flags_vertical = 3
 text = "Quit"
 flat = true
@@ -210,7 +216,7 @@ __meta__ = {
 anchor_right = 1.0
 margin_top = 25.0
 margin_bottom = 41.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = SubResource( 43 )
 text = "Credits"
 align = 1
 __meta__ = {

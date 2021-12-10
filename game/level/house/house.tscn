@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://models/house.tres" type="ArrayMesh" id=1]
 [ext_resource path="res://models/stair.tres" type="ArrayMesh" id=2]
@@ -15,6 +15,14 @@ extents = Vector3( 1.42831, 1, 1.57068 )
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 1, 1, 1.1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.654902, 0.0352941, 0.0352941, 1 )
+metallic_specular = 0.0
+
+[sub_resource type="CubeMesh" id=5]
+material = SubResource( 4 )
+size = Vector3( 10, 0.1, 5 )
 
 [node name="House" type="Spatial"]
 
@@ -61,3 +69,8 @@ shape = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.16928, 4.42317, -15.7279 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22.2454 )
+mesh = SubResource( 5 )
+material/0 = null

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=40 format=2]
+[gd_resource type="Theme" load_steps=41 format=2]
 
 [ext_resource path="res://fonts/Comfortaa-Regular.ttf" type="DynamicFontData" id=1]
 
@@ -157,6 +157,9 @@ bg_color = Color( 0.152941, 0.117647, 0.180392, 1 )
 [sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0.266667, 0.188235, 0.329412, 1 )
 
+[sub_resource type="StyleBoxFlat" id=39]
+bg_color = Color( 0.266667, 0.188235, 0.329412, 1 )
+
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 1 )
 
@@ -208,3 +211,5 @@ TextEdit/styles/focus = SubResource( 11 )
 TextEdit/styles/normal = SubResource( 12 )
 TextEdit/styles/read_only = SubResource( 13 )
 Tree/styles/bg = SubResource( 14 )
+WindowDialog/colors/title_color = Color( 1, 1, 1, 1 )
+WindowDialog/styles/panel = SubResource( 39 )

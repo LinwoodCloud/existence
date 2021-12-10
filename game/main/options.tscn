@@ -2,10 +2,10 @@
 
 [ext_resource path="res://main/OptionsScript.cs" type="Script" id=1]
 [ext_resource path="res://ui/recolor.shader" type="Shader" id=2]
-[ext_resource path="res://fonts/Comfortaa-Title.tres" type="DynamicFont" id=3]
+[ext_resource path="res://fonts/Teko.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ui/ClosePanel.tres" type="Animation" id=4]
 [ext_resource path="res://ui/OpenPanel.tres" type="Animation" id=5]
-[ext_resource path="res://ui/purple_theme.tres" type="Theme" id=6]
+[ext_resource path="res://ui/existence_dark.tres" type="Theme" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -53,24 +53,24 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 margin_right = 560.0
-margin_bottom = 75.0
+margin_bottom = 95.0
 size_flags_horizontal = 3
 
 [node name="Language" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 margin_right = 560.0
-margin_bottom = 29.0
+margin_bottom = 44.0
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Language"]
-margin_top = 5.0
+margin_top = 12.0
 margin_right = 278.0
-margin_bottom = 24.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 text = "Language"
 
 [node name="OptionButton" type="OptionButton" parent="ScrollContainer/VBoxContainer/Language"]
 margin_left = 282.0
 margin_right = 560.0
-margin_bottom = 29.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 text = "English"
 flat = true
@@ -86,9 +86,9 @@ rect_min_size = Vector2( 200, 0 )
 hint_tooltip = "Custom resolution"
 
 [node name="FPS" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-margin_top = 33.0
+margin_top = 48.0
 margin_right = 560.0
-margin_bottom = 52.0
+margin_bottom = 67.0
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/FPS"]
 margin_right = 226.0
@@ -113,13 +113,13 @@ text = "Value"
 align = 2
 
 [node name="Fullscreen" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-margin_top = 56.0
+margin_top = 71.0
 margin_right = 560.0
-margin_bottom = 75.0
+margin_bottom = 95.0
 
 [node name="CheckBox" type="CheckBox" parent="ScrollContainer/VBoxContainer/Fullscreen"]
-margin_right = 167.0
-margin_bottom = 19.0
+margin_right = 172.0
+margin_bottom = 24.0
 text = "Toggle fullscreen"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -136,16 +136,16 @@ __meta__ = {
 }
 
 [node name="RevertButton" type="Button" parent="HBoxContainer"]
-margin_left = 457.0
-margin_right = 519.0
-margin_bottom = 29.0
+margin_left = 420.0
+margin_right = 502.0
+margin_bottom = 44.0
 text = "Revert"
 flat = true
 
 [node name="ApplyButton" type="Button" parent="HBoxContainer"]
-margin_left = 523.0
+margin_left = 506.0
 margin_right = 580.0
-margin_bottom = 29.0
+margin_bottom = 44.0
 text = "Apply"
 flat = true
 

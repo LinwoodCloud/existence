@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://fonts/Comfortaa-SmallTitle-Outlined.tres" type="DynamicFont" id=1]
-[ext_resource path="res://fonts/Comfortaa-Outlined.tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/Teko.tres" type="DynamicFont" id=2]
 [ext_resource path="res://level/ui/QuestDisplay.cs" type="Script" id=3]
-[ext_resource path="res://ui/purple_theme.tres" type="Theme" id=4]
+[ext_resource path="res://ui/existence_dark.tres" type="Theme" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "DisplayQuest"
@@ -97,24 +96,24 @@ __meta__ = {
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 margin_right = 994.0
-margin_bottom = 28.0
+margin_bottom = 24.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "QuestTitle"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 32.0
+margin_top = 28.0
 margin_right = 994.0
-margin_bottom = 36.0
+margin_bottom = 32.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Description" type="Label" parent="VBoxContainer"]
-margin_top = 48.0
+margin_top = 81.0
 margin_right = 994.0
-margin_bottom = 67.0
+margin_bottom = 105.0
 size_flags_vertical = 6
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 2 )

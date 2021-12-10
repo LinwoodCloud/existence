@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://ui/purple_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/existence_dark.tres" type="Theme" id=1]
 [ext_resource path="res://ui/AnimatedPanel.cs" type="Script" id=2]
 [ext_resource path="res://ui/recolor.shader" type="Shader" id=3]
 [ext_resource path="res://fonts/Comfortaa-SmallTitle-Outlined.tres" type="DynamicFont" id=4]
